@@ -48,26 +48,26 @@ function Units() {
   }, []);
 
   useEffect(() => {
-    console.log("Costs Changed", woodCostValue, foodCostValue, goldCostValue)
+    console.log("Costs Changed", woodCostValue, foodCostValue, goldCostValue);
     let filters = {
       woodCostValue: [0, 200],
       foodCostValue: [0, 200],
       goldCostValue: [0, 200],
+    };
+
+    if (!(woodCostValue[0] === 0 && woodCostValue[1] === 200)) {
+      filters.woodCostValue = woodCostValue;
     }
 
-    if(!(woodCostValue[0] === 0 && woodCostValue[1] === 200)){
-      filters.woodCostValue = woodCostValue
+    if (!(foodCostValue[0] === 0 && foodCostValue[1] === 200)) {
+      filters.foodCostValue = foodCostValue;
     }
 
-    if(!(foodCostValue[0] === 0 && foodCostValue[1] === 200)){
-      filters.foodCostValue = foodCostValue
-    } 
+    if (!(goldCostValue[0] === 0 && goldCostValue[1] === 200)) {
+      filters.goldCostValue = goldCostValue;
+    }
 
-    if(!(goldCostValue[0] === 0 && goldCostValue[1] === 200)){
-      filters.goldCostValue = goldCostValue
-    } 
-
-    dispatch(unitFilteredList({filters, age}));
+    dispatch(unitFilteredList({ filters, age }));
     // eslint-disable-next-line
   }, [woodCostValue, foodCostValue, goldCostValue, age]);
 
@@ -79,18 +79,18 @@ function Units() {
     console.log(sliderActive);
     switch (event.target.name) {
       case "wood":
-        if(!event.target.checked){
-          setWoodCostValue([0, 200])
+        if (!event.target.checked) {
+          setWoodCostValue([0, 200]);
         }
         return setSliderActive({ ...sliderActive, wood: event.target.checked });
       case "food":
-        if(!event.target.checked){
-          setFoodCostValue([0, 200])
+        if (!event.target.checked) {
+          setFoodCostValue([0, 200]);
         }
         return setSliderActive({ ...sliderActive, food: event.target.checked });
       case "gold":
-        if(!event.target.checked){
-          setGoldCostValue([0, 200])
+        if (!event.target.checked) {
+          setGoldCostValue([0, 200]);
         }
         return setSliderActive({ ...sliderActive, gold: event.target.checked });
       default:
@@ -118,113 +118,117 @@ function Units() {
       <Header currentPage={"Units Page"} />
       <div className="unitsContent">
         <div className="filters">
-          <h4>Minimum Required Age Filter</h4>
-          <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
-            <InputLabel id="demo-simple-select-filled-label">Age</InputLabel>
-            <Select
-              labelId="demo-simple-select-filled-label"
-              id="demo-simple-select-filled"
-              value={age}
-              onChange={handleAgeChange}
-            >
-              <MenuItem value={"All"} selected>
-                All
-              </MenuItem>
-              <MenuItem value="Dark">Dark</MenuItem>
-              <MenuItem value="Feudal">Feudal</MenuItem>
-              <MenuItem value="Castle">Castle</MenuItem>
-              <MenuItem value="Imperial">Imperial</MenuItem>
-            </Select>
-          </FormControl>
-          <h4>Cost Filters</h4>
+          <div className="dropboxContent">
+            <h4>Minimum Required Age Filter</h4>
+            <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="demo-simple-select-filled-label">Age</InputLabel>
+              <Select
+                labelId="demo-simple-select-filled-label"
+                id="demo-simple-select-filled"
+                value={age}
+                onChange={handleAgeChange}
+              >
+                <MenuItem value={"All"} selected>
+                  All
+                </MenuItem>
+                <MenuItem value="Dark">Dark</MenuItem>
+                <MenuItem value="Feudal">Feudal</MenuItem>
+                <MenuItem value="Castle">Castle</MenuItem>
+                <MenuItem value="Imperial">Imperial</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
           <div className="Sliders">
-            <Box sx={{ width: 300 }} className="sliderBox">
-              <FormControlLabel
-                control={<Checkbox name="wood" onChange={handleChecker} />}
-                label="Wood"
-              />
-              {sliderActive.wood ? (
-                <Slider
-                  getAriaLabel={() => "Cost Range"}
-                  value={woodCostValue}
-                  onChange={handleWoodSliderChange}
-                  valueLabelDisplay="auto"
-                  getAriaValueText={valuetext}
-                  max={200}
+            <h4>Cost Filters</h4>
+            <div className="sliderContent">
+              <Box sx={{ width: 200 }} className="sliderBox">
+                <FormControlLabel
+                  control={<Checkbox name="wood" onChange={handleChecker} />}
+                  label="Wood"
                 />
-              ) : (
-                <Slider
-                  disabled
-                  getAriaLabel={() => "Cost Range"}
-                  value={woodCostValue}
-                  onChange={handleWoodSliderChange}
-                  valueLabelDisplay="auto"
-                  getAriaValueText={valuetext}
-                  max={200}
+                {sliderActive.wood ? (
+                  <Slider
+                    getAriaLabel={() => "Cost Range"}
+                    value={woodCostValue}
+                    onChange={handleWoodSliderChange}
+                    valueLabelDisplay="auto"
+                    getAriaValueText={valuetext}
+                    max={200}
+                  />
+                ) : (
+                  <Slider
+                    disabled
+                    getAriaLabel={() => "Cost Range"}
+                    value={woodCostValue}
+                    onChange={handleWoodSliderChange}
+                    valueLabelDisplay="auto"
+                    getAriaValueText={valuetext}
+                    max={200}
+                  />
+                )}
+                <div>
+                  {woodCostValue[0]} - {woodCostValue[1]}
+                </div>
+              </Box>
+              <Box sx={{ width: 200 }} className="sliderBox">
+                <FormControlLabel
+                  control={<Checkbox name="food" onChange={handleChecker} />}
+                  label="Food"
                 />
-              )}
-              <div>
-                {woodCostValue[0]} - {woodCostValue[1]}
-              </div>
-            </Box>
-            <Box sx={{ width: 300 }} className="sliderBox">
-              <FormControlLabel
-                control={<Checkbox name="food" onChange={handleChecker} />}
-                label="Food"
-              />
-              {sliderActive.food ? (
-                <Slider
-                  getAriaLabel={() => "Cost Range"}
-                  value={foodCostValue}
-                  onChange={handleFoodSliderChange}
-                  valueLabelDisplay="auto"
-                  getAriaValueText={valuetext}
-                  max={200}
+                {sliderActive.food ? (
+                  <Slider
+                    getAriaLabel={() => "Cost Range"}
+                    value={foodCostValue}
+                    onChange={handleFoodSliderChange}
+                    valueLabelDisplay="auto"
+                    getAriaValueText={valuetext}
+                    max={200}
+                  />
+                ) : (
+                  <Slider
+                    disabled
+                    getAriaLabel={() => "Cost Range"}
+                    value={foodCostValue}
+                    onChange={handleFoodSliderChange}
+                    valueLabelDisplay="auto"
+                    getAriaValueText={valuetext}
+                    max={200}
+                  />
+                )}
+                <div>
+                  {foodCostValue[0]} - {foodCostValue[1]}
+                </div>
+              </Box>
+              <Box className="sliderBox" sx={{ width: 200 }}>
+                <FormControlLabel
+                  control={<Checkbox name="gold" onChange={handleChecker} />}
+                  label="Gold"
                 />
-              ) : (
-                <Slider
-                  disabled
-                  getAriaLabel={() => "Cost Range"}
-                  value={foodCostValue}
-                  onChange={handleFoodSliderChange}
-                  valueLabelDisplay="auto"
-                  getAriaValueText={valuetext}
-                  max={200}
-                />
-              )}
-              <div>
-                {foodCostValue[0]} - {foodCostValue[1]}
-              </div>
-            </Box>
-            <Box className="sliderBox">
-              <FormControlLabel
-                control={<Checkbox name="gold" onChange={handleChecker} />}
-                label="Gold"
-              />
-              {sliderActive.gold ? (
-                <Slider
-                  getAriaLabel={() => "Cost Range"}
-                  value={goldCostValue}
-                  onChange={handleGoldSliderChange}
-                  valueLabelDisplay="auto"
-                  getAriaValueText={valuetext}
-                  max={200}
-                />
-              ) : (
-                <Slider
-                  disabled
-                  getAriaLabel={() => "Cost Range"}
-                  value={goldCostValue}
-                  onChange={handleGoldSliderChange}
-                  valueLabelDisplay="auto"
-                  getAriaValueText={valuetext}
-                  max={200}
-                />
-              )}
-              <div>
-                {goldCostValue[0]} - {goldCostValue[1]}
-              </div>
-            </Box>
+                {sliderActive.gold ? (
+                  <Slider
+                    getAriaLabel={() => "Cost Range"}
+                    value={goldCostValue}
+                    onChange={handleGoldSliderChange}
+                    valueLabelDisplay="auto"
+                    getAriaValueText={valuetext}
+                    max={200}
+                  />
+                ) : (
+                  <Slider
+                    disabled
+                    getAriaLabel={() => "Cost Range"}
+                    value={goldCostValue}
+                    onChange={handleGoldSliderChange}
+                    valueLabelDisplay="auto"
+                    getAriaValueText={valuetext}
+                    max={200}
+                  />
+                )}
+                <div>
+                  {goldCostValue[0]} - {goldCostValue[1]}
+                </div>
+              </Box>
+            </div>
           </div>
         </div>
         <div className="container">

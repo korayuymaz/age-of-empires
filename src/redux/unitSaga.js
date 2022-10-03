@@ -47,20 +47,22 @@ function* getFilteredUnits(filters) {
                 break;
               }
             }
-            if(data[unit].cost.Food){
+            if (data[unit].cost.Food) {
               if (
                 !(
-                  data[unit].cost.Food >= filters.data.filters.foodCostValue[0] &&
+                  data[unit].cost.Food >=
+                    filters.data.filters.foodCostValue[0] &&
                   data[unit].cost.Food <= filters.data.filters.foodCostValue[1]
                 )
               ) {
                 break;
               }
             }
-            if(data[unit].cost.Gold){
+            if (data[unit].cost.Gold) {
               if (
                 !(
-                  data[unit].cost.Gold >= filters.data.filters.goldCostValue[0] &&
+                  data[unit].cost.Gold >=
+                    filters.data.filters.goldCostValue[0] &&
                   data[unit].cost.Gold <= filters.data.filters.goldCostValue[1]
                 )
               ) {
@@ -73,6 +75,45 @@ function* getFilteredUnits(filters) {
       }
     }
     // console.log(filters.data.filters)
+    yield put({ type: SET_FILTERED_UNIT_LIST, filteredData });
+  } else if (filters.data.age === "All") {
+    for (let unit in data) {
+      for (let cost in filters.data.filters) {
+        if (data[unit].cost) {
+          if (data[unit].cost.Wood) {
+            if (
+              !(
+                data[unit].cost.Wood >= filters.data.filters.woodCostValue[0] &&
+                data[unit].cost.Wood <= filters.data.filters.woodCostValue[1]
+              )
+            ) {
+              break;
+            }
+          }
+          if (data[unit].cost.Food) {
+            if (
+              !(
+                data[unit].cost.Food >= filters.data.filters.foodCostValue[0] &&
+                data[unit].cost.Food <= filters.data.filters.foodCostValue[1]
+              )
+            ) {
+              break;
+            }
+          }
+          if (data[unit].cost.Gold) {
+            if (
+              !(
+                data[unit].cost.Gold >= filters.data.filters.goldCostValue[0] &&
+                data[unit].cost.Gold <= filters.data.filters.goldCostValue[1]
+              )
+            ) {
+              break;
+            }
+          }
+          filteredData.push(data[unit]);
+        }
+      }
+    }
     yield put({ type: SET_FILTERED_UNIT_LIST, filteredData });
   } else {
     filteredData = yield unitData.units;

@@ -1,30 +1,20 @@
-.column {
-  display: grid; 
-  grid-auto-columns: 1fr; 
-  grid-template-columns: 1fr 1fr 1fr; 
-  grid-template-rows: 0.5fr 1.5fr; 
-  gap: 5px 10px; 
-  grid-template-areas: 
-    "Dropbox Slider Slider"
-    "data data data"; 
-}
-.data { grid-area: data; }
-.Slider { grid-area: Slider; }
-.Dropbox { grid-area: Dropbox; }
-
-
 .unitsContent{
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  width: 100vw;
+}
+
+h3,h4,h6,h6{
+  margin: 5px;
 }
 
 .container{
   display: flex;
   margin: auto;
-  height: 31.25rem;
-  width: 600px;
-  margin-top: 50px;
+  height: 400px;
+  width: 750px;
+  margin-top: 20px;
 }
 
 .link{
@@ -41,11 +31,20 @@
 }
 
 .filters{
+  display: flex;
   padding: 20px;
+  width: 80vw;
+  text-align: center;
 }
 
 .Sliders{
-  width: 100%;
+  flex: 0 0 75%;
+}
+
+.sliderContent{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .sliderBox{
@@ -53,4 +52,8 @@
   border-top: 1px solid black;
   margin-bottom: 20px;
   margin-top: 20px;
+}
+
+.dropboxContent{
+  flex: 0 0 25%;
 }
