@@ -1,28 +1,26 @@
 header{
-  padding: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  padding-left: 25rem;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+  padding: 20px
 }
 
 h1{
-  display: inline;
+  margin: auto;
   color: black;
-  padding-right: 16rem;
 }
 
 nav{
-  display: inline;
-  position: relative;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
 }
 
 nav a{
   text-decoration: none;
   color: black;
-  padding: 10px;
+  padding-right: 20px;
 }
 
 nav a:hover{

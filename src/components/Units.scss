@@ -1,11 +1,41 @@
+.unitsContent{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
 .container{
   display: flex;
   margin: auto;
-  height: 500px;
+  height: 400px;
   width: 750px;
   margin-top: 50px;
 }
 
 .link{
   text-decoration: none;
+  text-align: center;
+}
+
+.tableRowMaterial{
+  text-decoration: none;
+}
+
+.tableRowMaterial:hover{
+  background-color: rgb(217, 234, 250);
+}
+
+.filters{
+  padding: 20px;
+}
+
+.Sliders{
+  width: 100%;
+}
+
+.sliderBox{
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }

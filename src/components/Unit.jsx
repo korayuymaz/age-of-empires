@@ -3,21 +3,24 @@ import Header from "./Header";
 import { useParams } from "react-router-dom";
 import { unitDetail } from "../redux/action";
 import { useDispatch, useSelector } from "react-redux";
+import "./Unit.scss";
 
 function Unit() {
   const params = useParams();
   const dispatch = useDispatch();
   let data = useSelector((state) => state.unitData[0]);
-  console.warn("Unit detail data", data);
+
   useEffect(() => {
     dispatch(unitDetail(params.id));
     // eslint-disable-next-line
   }, []);
+
+
   return (
     <>
       <Header currentPage={"Unit Detail Page"} />
       <div className="content">
-        <table>
+        <table className="unitDetailTable">
           <tr>
             <th>ID:</th>
             <td>{data.id}</td>

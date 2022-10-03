@@ -1,0 +1,18 @@
+.content{
+  margin: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.unitDetailTable th, td{
+  border: 1px solid black;
+  text-align: left;
+  padding: 5px;
+}
+
+.unitDetailTable th{
+  background-color: rgb(47, 46, 46);
+  color: white;
+}
