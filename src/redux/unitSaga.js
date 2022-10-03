@@ -27,29 +27,58 @@ function* getUnitDetails(id) {
 }
 
 function* getFilteredUnits(filters) {
+  console.log("Filters Data", filters.data);
   let data = yield unitData.units;
   let filteredData = yield [];
   // some calculations
-  if (filters.data !== "All") {
+  if (filters.data.age !== "All") {
     for (let unit in data) {
-      if (data[unit].age === filters.data) {
-        filteredData.push(data[unit]);
+      if (data[unit].age === filters.data.age) {
+        for (let cost in filters.data.filters) {
+          if (data[unit].cost) {
+            if (data[unit].cost.Wood) {
+              if (
+                !(
+                  data[unit].cost.Wood >=
+                    filters.data.filters.woodCostValue[0] &&
+                  data[unit].cost.Wood <= filters.data.filters.woodCostValue[1]
+                )
+              ) {
+                break;
+              }
+            }
+            if(data[unit].cost.Food){
+              if (
+                !(
+                  data[unit].cost.Food >= filters.data.filters.foodCostValue[0] &&
+                  data[unit].cost.Food <= filters.data.filters.foodCostValue[1]
+                )
+              ) {
+                break;
+              }
+            }
+            if(data[unit].cost.Gold){
+              if (
+                !(
+                  data[unit].cost.Gold >= filters.data.filters.goldCostValue[0] &&
+                  data[unit].cost.Gold <= filters.data.filters.goldCostValue[1]
+                )
+              ) {
+                break;
+              }
+            }
+            filteredData.push(data[unit]);
+          }
+        }
       }
     }
-    console.log(filters.data);
+    // console.log(filters.data.filters)
     yield put({ type: SET_FILTERED_UNIT_LIST, filteredData });
   } else {
-    console.log("Entered else part ",filters.data)
     filteredData = yield unitData.units;
     yield put({ type: SET_FILTERED_UNIT_LIST, filteredData });
   }
 }
-
-// function* searchUnits(data) {
-//   let data = yield unitData.units;
-//   console.warn("action is called", data);
-//   yield put({ type: SET_ALL_UNITS, data: result });
-// }
 
 function* unitSaga() {
   yield takeEvery(UNITS_LIST, getUnits);

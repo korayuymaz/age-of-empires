@@ -1,3 +1,18 @@
+.column {
+  display: grid; 
+  grid-auto-columns: 1fr; 
+  grid-template-columns: 1fr 1fr 1fr; 
+  grid-template-rows: 0.5fr 1.5fr; 
+  gap: 5px 10px; 
+  grid-template-areas: 
+    "Dropbox Slider Slider"
+    "data data data"; 
+}
+.data { grid-area: data; }
+.Slider { grid-area: Slider; }
+.Dropbox { grid-area: Dropbox; }
+
+
 .unitsContent{
   display: flex;
   justify-content: space-around;
@@ -7,8 +22,8 @@
 .container{
   display: flex;
   margin: auto;
-  height: 400px;
-  width: 750px;
+  height: 31.25rem;
+  width: 600px;
   margin-top: 50px;
 }
 
