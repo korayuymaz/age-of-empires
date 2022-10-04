@@ -48,7 +48,6 @@ function Units() {
   }, []);
 
   useEffect(() => {
-    console.log("Costs Changed", woodCostValue, foodCostValue, goldCostValue);
     let filters = {
       woodCostValue: [0, 200],
       foodCostValue: [0, 200],
@@ -67,16 +66,15 @@ function Units() {
       filters.goldCostValue = goldCostValue;
     }
 
-    dispatch(unitFilteredList({ filters, age }));
+    dispatch(unitFilteredList({ filters, age, sliderActive }));
     // eslint-disable-next-line
-  }, [woodCostValue, foodCostValue, goldCostValue, age]);
+  }, [woodCostValue, foodCostValue, goldCostValue, age, sliderActive]);
 
   const handleAgeChange = (event) => {
     setAge(event.target.value);
   };
 
   const handleChecker = (event) => {
-    console.log(sliderActive);
     switch (event.target.name) {
       case "wood":
         if (!event.target.checked) {
@@ -99,17 +97,14 @@ function Units() {
   };
 
   const handleWoodSliderChange = (event, newValue) => {
-    console.log("Cost Range ", woodCostValue);
     setWoodCostValue(newValue);
   };
 
   const handleFoodSliderChange = (event, newValue) => {
-    console.log("Cost Range ", foodCostValue);
     setFoodCostValue(newValue);
   };
 
   const handleGoldSliderChange = (event, newValue) => {
-    console.log("Cost Range ", goldCostValue);
     setGoldCostValue(newValue);
   };
 

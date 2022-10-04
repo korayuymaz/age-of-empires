@@ -27,98 +27,38 @@ function* getUnitDetails(id) {
 }
 
 function* getFilteredUnits(filters) {
-  console.log("Filters Data", filters.data);
   let data = yield unitData.units;
   let filteredData = yield [];
+  console.log(filters.data.sliderActive)
   // some calculations
   if (filters.data.age !== "All") {
     for (let unit in data) {
       if (data[unit].age === filters.data.age) {
-        for (let cost in filters.data.filters) {
+        if (filters.data.sliderActive.wood) {
+          let lowerCost = parseInt(filters.data.filters.woodCostValue[0]);
+          let upperCost = parseInt(filters.data.filters.woodCostValue[1]);
           if (data[unit].cost) {
+            console.log("This is where its suppose to enter")
             if (data[unit].cost.Wood) {
               if (
-                !(
-                  data[unit].cost.Wood >=
-                    filters.data.filters.woodCostValue[0] &&
-                  data[unit].cost.Wood <= filters.data.filters.woodCostValue[1]
-                )
+                lowerCost <= data[unit].cost.Wood &&
+                upperCost >= data[unit].cost.Wood
               ) {
-                break;
+                filteredData.push(data[unit]);
               }
             }
-            if (data[unit].cost.Food) {
-              if (
-                !(
-                  data[unit].cost.Food >=
-                    filters.data.filters.foodCostValue[0] &&
-                  data[unit].cost.Food <= filters.data.filters.foodCostValue[1]
-                )
-              ) {
-                break;
-              }
-            }
-            if (data[unit].cost.Gold) {
-              if (
-                !(
-                  data[unit].cost.Gold >=
-                    filters.data.filters.goldCostValue[0] &&
-                  data[unit].cost.Gold <= filters.data.filters.goldCostValue[1]
-                )
-              ) {
-                break;
-              }
-            }
+          } else {
             filteredData.push(data[unit]);
           }
-        }
-      }
-    }
-    // console.log(filters.data.filters)
-    yield put({ type: SET_FILTERED_UNIT_LIST, filteredData });
-  } else if (filters.data.age === "All") {
-    for (let unit in data) {
-      for (let cost in filters.data.filters) {
-        if (data[unit].cost) {
-          if (data[unit].cost.Wood) {
-            if (
-              !(
-                data[unit].cost.Wood >= filters.data.filters.woodCostValue[0] &&
-                data[unit].cost.Wood <= filters.data.filters.woodCostValue[1]
-              )
-            ) {
-              break;
-            }
-          }
-          if (data[unit].cost.Food) {
-            if (
-              !(
-                data[unit].cost.Food >= filters.data.filters.foodCostValue[0] &&
-                data[unit].cost.Food <= filters.data.filters.foodCostValue[1]
-              )
-            ) {
-              break;
-            }
-          }
-          if (data[unit].cost.Gold) {
-            if (
-              !(
-                data[unit].cost.Gold >= filters.data.filters.goldCostValue[0] &&
-                data[unit].cost.Gold <= filters.data.filters.goldCostValue[1]
-              )
-            ) {
-              break;
-            }
-          }
+        } else {
           filteredData.push(data[unit]);
         }
       }
     }
-    yield put({ type: SET_FILTERED_UNIT_LIST, filteredData });
   } else {
-    filteredData = yield unitData.units;
-    yield put({ type: SET_FILTERED_UNIT_LIST, filteredData });
+    filteredData = data;
   }
+  yield put({ type: SET_FILTERED_UNIT_LIST, filteredData });
 }
 
 function* unitSaga() {
