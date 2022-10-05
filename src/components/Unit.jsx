@@ -1,17 +1,19 @@
 import { useEffect } from "react";
+import React from "react";
 import Header from "./Header";
 import { useParams } from "react-router-dom";
 import { unitDetail } from "../redux/action";
 import { useDispatch, useSelector } from "react-redux";
 import "./Unit.scss";
 
-function Unit() {
-  const params = useParams();
+const Unit = React.memo(() => {
+  const { id } = useParams();
   const dispatch = useDispatch();
   let data = useSelector((state) => state.unitData[0]);
 
   useEffect(() => {
-    dispatch(unitDetail(params.id));
+    console.log("Why")
+    dispatch(unitDetail(id));
     // eslint-disable-next-line
   }, []);
 
@@ -103,6 +105,6 @@ function Unit() {
       </div>
     </>
   );
-}
+});
 
 export default Unit;

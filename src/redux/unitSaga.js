@@ -46,14 +46,12 @@ function* getFilteredUnits(filters) {
           !filters.data.sliderActive.food &&
           !filters.data.sliderActive.gold
         ) {
-          let lowerCost = parseInt(filters.data.filters.woodCostValue[0]);
-          let upperCost = parseInt(filters.data.filters.woodCostValue[1]);
           if (data[unit].cost) {
             console.log("This is where its suppose to enter");
             if (data[unit].cost.Wood) {
               if (
-                lowerCost <= data[unit].cost.Wood &&
-                upperCost >= data[unit].cost.Wood
+                lowerCostWood <= data[unit].cost.Wood &&
+                upperCostWood >= data[unit].cost.Wood
               ) {
                 filteredData.push(data[unit]);
               }
@@ -65,14 +63,12 @@ function* getFilteredUnits(filters) {
           filters.data.sliderActive.food &&
           !filters.data.sliderActive.gold
         ) {
-          let lowerCost = parseInt(filters.data.filters.foodCostValue[0]);
-          let upperCost = parseInt(filters.data.filters.foodCostValue[1]);
           if (data[unit].cost) {
             console.log("This is where its suppose to enter");
             if (data[unit].cost.Food) {
               if (
-                lowerCost <= data[unit].cost.Food &&
-                upperCost >= data[unit].cost.Food
+                lowerCostFood <= data[unit].cost.Food &&
+                upperCostFood >= data[unit].cost.Food
               ) {
                 filteredData.push(data[unit]);
               }
@@ -84,14 +80,12 @@ function* getFilteredUnits(filters) {
           !filters.data.sliderActive.food &&
           filters.data.sliderActive.gold
         ) {
-          let lowerCost = parseInt(filters.data.filters.goldCostValue[0]);
-          let upperCost = parseInt(filters.data.filters.goldCostValue[1]);
           if (data[unit].cost) {
             console.log("This is where its suppose to enter");
             if (data[unit].cost.Gold) {
               if (
-                lowerCost <= data[unit].cost.Gold &&
-                upperCost >= data[unit].cost.Gold
+                lowerCostGold <= data[unit].cost.Gold &&
+                upperCostGold >= data[unit].cost.Gold
               ) {
                 filteredData.push(data[unit]);
               }
@@ -103,10 +97,6 @@ function* getFilteredUnits(filters) {
           filters.data.sliderActive.food &&
           !filters.data.sliderActive.gold
         ) {
-          let lowerCostWood = parseInt(filters.data.filters.woodCostValue[0]);
-          let upperCostWood = parseInt(filters.data.filters.woodCostValue[1]);
-          let lowerCostFood = parseInt(filters.data.filters.foodCostValue[0]);
-          let upperCostFood = parseInt(filters.data.filters.foodCostValue[1]);
           if (data[unit].cost) {
             console.log("This is where its suppose to enter");
             if (data[unit].cost.Food && data[unit].cost.Wood) {
@@ -126,11 +116,6 @@ function* getFilteredUnits(filters) {
           !filters.data.sliderActive.food &&
           filters.data.sliderActive.gold
         ) {
-          let lowerCostGold = parseInt(filters.data.filters.goldCostValue[0]);
-          let upperCostGold = parseInt(filters.data.filters.goldCostValue[1]);
-          let lowerCostWood = parseInt(filters.data.filters.woodCostValue[0]);
-          let upperCostWood = parseInt(filters.data.filters.woodCostValue[1]);
-
           if (data[unit].cost) {
             console.log("This is where its suppose to enter");
             if (data[unit].cost.Gold && data[unit].cost.Wood) {
@@ -150,11 +135,6 @@ function* getFilteredUnits(filters) {
           filters.data.sliderActive.food &&
           filters.data.sliderActive.gold
         ) {
-          let lowerCostGold = parseInt(filters.data.filters.goldCostValue[0]);
-          let upperCostGold = parseInt(filters.data.filters.goldCostValue[1]);
-          let lowerCostFood = parseInt(filters.data.filters.foodCostValue[0]);
-          let upperCostFood = parseInt(filters.data.filters.foodCostValue[1]);
-
           if (data[unit].cost) {
             console.log("This is where its suppose to enter");
             if (data[unit].cost.Gold && data[unit].cost.Food) {
@@ -174,13 +154,6 @@ function* getFilteredUnits(filters) {
           filters.data.sliderActive.food &&
           filters.data.sliderActive.gold
         ) {
-          let lowerCostGold = parseInt(filters.data.filters.goldCostValue[0]);
-          let upperCostGold = parseInt(filters.data.filters.goldCostValue[1]);
-          let lowerCostFood = parseInt(filters.data.filters.foodCostValue[0]);
-          let upperCostFood = parseInt(filters.data.filters.foodCostValue[1]);
-          let lowerCostWood = parseInt(filters.data.filters.woodCostValue[0]);
-          let upperCostWood = parseInt(filters.data.filters.woodCostValue[1]);
-
           if (data[unit].cost) {
             console.log("This is where its suppose to enter");
             if (

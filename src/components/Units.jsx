@@ -116,10 +116,10 @@ function Units() {
           <div className="dropboxContent">
             <h4>Minimum Required Age Filter</h4>
             <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="demo-simple-select-filled-label">Age</InputLabel>
+              <InputLabel id="minimumRequiredAgelabel">Age</InputLabel>
               <Select
-                labelId="demo-simple-select-filled-label"
-                id="demo-simple-select-filled"
+                labelId="minimumRequiredAgelabel"
+                id="minimumRequiredAge"
                 value={age}
                 onChange={handleAgeChange}
               >
