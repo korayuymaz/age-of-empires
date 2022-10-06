@@ -9,11 +9,13 @@ import {
 } from "./actionTypes";
 import unitData from "../data/age-of-empires-units.json";
 
+// This generator function gets all the units in given data
 function* getUnits() {
   let data = yield unitData.units;
   yield put({ type: SET_UNIT_LIST, data });
 }
 
+// This generator function gets a specific unit with given id
 function* getUnitDetails(id) {
   let data = yield unitData.units;
   for (let unit in data) {
@@ -26,6 +28,7 @@ function* getUnitDetails(id) {
   yield put({ type: SET_UNIT_DETAIL, foundUnit });
 }
 
+// This generator function gets filtered data
 function* getFilteredUnits(filters) {
   let data = yield unitData.units;
   let filteredData = yield [];
@@ -36,9 +39,10 @@ function* getFilteredUnits(filters) {
   let lowerCostWood = parseInt(filters.data.filters.woodCostValue[0]);
   let upperCostWood = parseInt(filters.data.filters.woodCostValue[1]);
 
-  // some calculations
+  // Filter calculations
   if (filters.data.age !== "All") {
     for (let unit in data) {
+      // Check if unit has the age requirement as the age selected from filter
       if (data[unit].age === filters.data.age) {
         // If only the Wood Cost filter is active
         if (
@@ -179,6 +183,7 @@ function* getFilteredUnits(filters) {
       }
     }
   } else {
+    // If age filter is not active or equal to All
     for (let unit in data) {
       if (
         filters.data.sliderActive.wood &&

@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom'
-import "./Header.scss"
+import { Link } from "react-router-dom";
+import "./Header.scss";
 
-function Header({currentPage}) {
+function Header({ currentPage }) {
   return (
     <header>
       <h1>{currentPage}</h1>
@@ -10,7 +10,7 @@ function Header({currentPage}) {
         <Link to="/units">Units</Link>
       </nav>
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;

@@ -1,4 +1,8 @@
-import { SET_UNIT_LIST, SET_UNIT_DETAIL, SET_FILTERED_UNIT_LIST } from "./actionTypes";
+import {
+  SET_UNIT_LIST,
+  SET_UNIT_DETAIL,
+  SET_FILTERED_UNIT_LIST,
+} from "./actionTypes";
 
 export const unitData = (data = [], action) => {
   switch (action.type) {
