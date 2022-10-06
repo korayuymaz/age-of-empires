@@ -10,13 +10,14 @@ import {
 import unitData from "../data/age-of-empires-units.json";
 
 // This generator function gets all the units in given data
-function* getUnits() {
+export function* getUnits() {
   let data = yield unitData.units;
   yield put({ type: SET_UNIT_LIST, data });
 }
 
 // This generator function gets a specific unit with given id
-function* getUnitDetails(id) {
+export function* getUnitDetails(id) {
+  console.log("see if this works", id)
   let data = yield unitData.units;
   for (let unit in data) {
     if (parseInt(data[unit].id) === parseInt(id.data)) {
@@ -29,7 +30,7 @@ function* getUnitDetails(id) {
 }
 
 // This generator function gets filtered data
-function* getFilteredUnits(filters) {
+export function* getFilteredUnits(filters) {
   let data = yield unitData.units;
   let filteredData = yield [];
   let lowerCostGold = parseInt(filters.data.filters.goldCostValue[0]);
